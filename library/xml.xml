@@ -1,0 +1,53 @@
+<ROSETTASCRIPTS>
+	<SCOREFXNS>
+		<ScoreFunction name="cenfxn" weights="fldsgn_cen.wts" />
+		<ScoreFunction name="standardfxn" weights="ref2015.wts" />
+		<ScoreFunction name="cstfxn" weights="ref2015_cst.wts" />
+		<ScoreFunction name="hpatch" weights="empty" >
+			<Reweight scoretype="hpatch" weight="1.0" />
+		</ScoreFunction>
+	</SCOREFXNS>
+	<RESIDUE_SELECTORS>
+		<Layer name="surface" select_surface="1" use_sidechain_neighbors="1" core_cutoff="5.2" surface_cutoff="2.0" />
+		<Layer name="boundary" select_boundary="1" use_sidechain_neighbors="1" core_cutoff="5.2" surface_cutoff="2.0" />
+		<Layer name="core" select_core="1" use_sidechain_neighbors="1" core_cutoff="5.2" surface_cutoff="2.0" />
+		<Index name="strands" resnums="STRANDS" />
+		<Index name="loops" resnums="LOOPS" />
+	</RESIDUE_SELECTORS>
+	<TASKOPERATIONS>
+		<DesignRestrictions name="layer_design">
+			<Action selector_logic="surface AND strands"	aas="EHKNQRST"/>
+			<Action selector_logic="surface AND loops"		aas="DEGHKNPQRST"/>
+			<Action selector_logic="boundary AND strands"	aas="EFHIKLMQRSTVWY"/>
+			<Action selector_logic="boundary AND loops"		aas="ADEGHIKLMNPQRSTV"/>
+			<Action selector_logic="core AND strands"		aas="FILMVWY"/>
+			<Action selector_logic="core AND loops"			aas="AGILMPV"/>
+		</DesignRestrictions>
+		<ConsensusLoopDesign name="disallow_nonnative_loop_sequences"
+			residue_selector="loops"
+			enrichment_threshold="0.25" />
+	</TASKOPERATIONS>
+	<RESIDUE_LEVEL_TASK_OPERATIONS>
+	</RESIDUE_LEVEL_TASK_OPERATIONS>
+	<!-- <SIMPLE_METRICS>
+		<SapScoreMetric name="sap_score_metric" />
+	</SIMPLE_METRICS> -->
+	<MOVERS>
+		<FastDesign name="fast_design" task_operations="layer_design,disallow_nonnative_loop_sequences" scorefxn="cstfxn" repeats="2" clear_designable_residues="0" />
+	</MOVERS>
+	<FILTERS>
+		<ScoreType name="total_score" scorefxn="standardfxn" score_type="total_score" threshold="0" />
+		<ScoreType name="hpatch_score" scorefxn="hpatch" score_type="hpatch" threshold="0" />
+		<ExposedHydrophobics name="exposed_hydrophobics" sasa_cutoff="20" threshold="0" />
+		<BuriedSurfaceArea name="total_bsa" />
+		<!-- <SimpleMetricFilter name="sap_score" metric="sap_score_metric" comparison_type="lt" confidence="0" /> -->
+	</FILTERS>
+	<PROTOCOLS>
+		<Add mover_name="fast_design" />
+		<Add filter_name="total_score" />
+		<Add filter_name="hpatch_score" />
+		<Add filter_name="exposed_hydrophobics" />
+		<Add filter_name="total_bsa" />
+		<!-- <Add filter_name="sap_score" /> -->
+	</PROTOCOLS>
+</ROSETTASCRIPTS>
