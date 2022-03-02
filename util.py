@@ -144,22 +144,3 @@ def arch_distance(sandwich_pdb):
 
 def split(word):
     return [char for char in word]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
