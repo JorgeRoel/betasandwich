@@ -1,7 +1,8 @@
 import numpy as np
 from pyrosetta import *
 
-pyrosetta.init(silent=True)
+pyrosetta.init()
+
 
 def check_chirality(pose, nres1, nres2, reverse=False):
 
