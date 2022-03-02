@@ -1,8 +1,8 @@
 import numpy as np
 from constants import DISTANCE_STRANDS, RESIDUE_LENGTH, CO_BOND, CC_BOND
 from functions import caca_vector, co_vector, orientation_vector, rotation_matrix
-from pyrosetta import *
 
+from pyrosetta import *
 
 pyrosetta.init(silent=True)
 
