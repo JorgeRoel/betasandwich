@@ -1,5 +1,6 @@
 import math
 import numpy as np
+
 from pyrosetta import *
 
 pyrosetta.init(silent=True)
@@ -38,7 +39,3 @@ def rotation_matrix(axis, theta=180):
     return np.array([[aa+bb-cc-dd, 2*(bc+ad), 2*(bd-ac)],
                      [2*(bc-ad), aa+cc-bb-dd, 2*(cd+ab)],
                      [2*(bd+ac), 2*(cd-ab), aa+dd-bb-cc]])
-
-
-
-
