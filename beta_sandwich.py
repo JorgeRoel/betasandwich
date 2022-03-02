@@ -107,4 +107,4 @@ if __name__ == '__main__':
                 log.info(f"COMPLETED DESIGNER: {pdb_seq} ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})")
 
     except:
-        log.info(f"FAILED: {pdb_cls} ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
+        log.info(f"FAILED: {pdb_cls} ({datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')})")
