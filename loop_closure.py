@@ -10,6 +10,7 @@ from pyrosetta import *
 
 pyrosetta.init()
 
+
 def close_hairpins(initial_backbone, nres1, nres2, code, suffix):
 
     ref_pose = pose_from_pdb(initial_backbone)
@@ -292,16 +293,3 @@ def close_arches(pose, nres1, nres2, bp_backbone, suffix):
                 os.remove(bp_arch1)
                 os.remove(bp_arch2)
                 log.info("ARCHES2_3/4_5: FAILED")
-
-
-
-
-
-
-
-
-
-
-
-
-
