@@ -28,9 +28,3 @@ def hbond_constraints(strands, orientation):
             pass
 
     return constraints
-
-
-
-
-
-
